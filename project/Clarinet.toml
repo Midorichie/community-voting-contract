@@ -1,6 +1,53 @@
 [project]
 name = "community-voting-contract"
+description = "A comprehensive community voting system with token-weighted governance"
+version = "2.0.0"
+authors = ["midorichie"]
+license = "MIT"
+keywords = ["governance", "voting", "dao", "community", "stacks"]
 
-[[contracts]]
-name = "community-voting"
+[contracts.community-voting]
 path = "contracts/community-voting.clar"
+clarity_version = 2
+epoch = "2.4"
+
+[contracts.token-voting]
+path = "contracts/token-voting.clar"
+clarity_version = 2
+epoch = "2.4"
+
+[repl]
+costs_version = 2
+parser_version = 2
+
+[repl.analysis]
+passes = ["check_checker"]
+
+[project.cache_location]
+path = ".cache"
+
+# Network configurations
+[networks]
+testnet = "https://stacks-node-api.testnet.stacks.co"
+mainnet = "https://stacks-node-api.mainnet.stacks.co"
+
+# Test configuration
+[project.requirements]
+clarinet = ">=1.5.0"
+
+# Deployment settings
+[deployments]
+settings = {batch_size = 25, fee_rate = 1}
+
+[deployments.testnet]
+stacks-node = "https://stacks-node-api.testnet.stacks.co"
+bitcoin-node = "https://bitcoin-testnet.drpc.org"
+
+[deployments.mainnet]
+stacks-node = "https://stacks-node-api.mainnet.stacks.co"
+bitcoin-node = "https://bitcoin-mainnet.drpc.org"
+
+# Development settings
+[development]
+enable_costs = true
+enable_analysis = true
