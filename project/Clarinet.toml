@@ -1,0 +1,6 @@
+[project]
+name = "community-voting-contract"
+
+[[contracts]]
+name = "community-voting"
+path = "contracts/community-voting.clar"
